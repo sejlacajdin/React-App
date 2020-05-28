@@ -1,0 +1,41 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+html {
+    font-size: 100%;
+  }
+  body {
+    background-color: #f9f9f9;
+  }
+  
+  nav {
+    /* margin-top: 46.3px; */
+    margin-left: 70px;
+    margin-right: 70px;
+  }
+  
+  @font-face {
+    font-family: SF Pro Display Semibold;
+    src: url("./assets/fonts/sf_prodisplay_Semibold.ttf");
+  }
+  
+  @font-face {
+    font-family: SF Pro Display Regular;
+    src: url("./assets/fonts/sf_prodisplay_regular.ttf");
+  }
+  
+  @font-face {
+    font-family: SF Pro Display Light;
+    src: url("./assets/fonts/sf_prodisplay_light.ttf");
+  }
+  
+  @font-face {
+    font-family: SF Pro DisplayMedium;
+    src: url("./assets/fonts/sf_prodisplay_medium.ttf");
+  }
+  @font-face {
+    font-family: SFProDisplay-Bold;
+    src: url("./assets/fonts/sf_prodisplay_bold.ttf");
+  }

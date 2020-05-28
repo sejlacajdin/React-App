@@ -1,0 +1,51 @@
+.loginRegisterContainer {
+    width: 530px;
+    background: white;
+    padding: 110px 110px;
+    margin: 0 auto;
+    margin-top: 85px;
+    box-shadow: -12px 17px 46px 16px rgb(243, 238, 238);
+}
+.loginRegisterContainer h2{
+  font-family: SF Pro Display Semibold;
+  color:rgb(63, 149, 199);
+  margin-bottom: 64px;
+    text-align: center;
+    font-size: 30px;
+}
+.loginContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.form-input {
+    width: 310px;
+    height: 55px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: #f3f3f3;
+    border: 0;
+    outline: none;
+    font-family: SF Pro DisplayMedium;
+    border-radius: 5px;
+
+  }
+  
+  .form-input:nth-of-type(1) {
+    margin-bottom: 30px;
+  }
+  
+  .form-input::placeholder {
+    font-family: SF Pro DisplayMedium;    
+    color: #707070;
+  }
+  .loginRegisterContainer button{
+    background-color:rgb(63, 149, 199);
+    color:white;
+    border: none;
+    padding: 13px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+
+  }

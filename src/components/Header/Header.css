@@ -1,0 +1,57 @@
+nav {
+    display: flex;
+    height: 84px;
+    width: 90%;
+    margin: 0 auto;
+    align-items: center;
+    background: white;
+    justify-content: flex-end;
+}
+
+.header {
+    background: white;
+    box-shadow: -11px 4px 35px 8px rgb(243, 238, 238);
+
+}
+
+.header__logo--black {
+    height: 50px;
+    margin-right: 82px;
+}
+
+.header__rightSide a, .header__rightSide span {
+    text-decoration: none;
+    font-family: SF Pro Display Semibold;
+    box-shadow: none;
+    font-size: 18px;
+    color: #ababab;
+}
+.header__rightSide span{
+  color:rgb(63, 149, 199);
+  cursor: pointer;
+}
+.header__rightSide a:active,
+.header__rightSide a:focus,
+.header__rightSide a:visited {
+  color:rgb(63, 149, 199);
+}
+
+.header__nav a {
+    font-family: SF Pro Display Semibold;
+    text-decoration: none;
+    color: #ababab;
+    margin-right: 40px;
+}
+
+.header__nav a.active,
+.header__nav a:hover {
+    color: #121212;
+    cursor: pointer;
+}
+
+.header__leftSide {
+    display: flex;
+    width: 80%;
+    justify-content: flex-start;
+    align-items: center;
+}
