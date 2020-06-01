@@ -7,21 +7,14 @@ import { setToken } from "../../redux/actions";
 import './Header.css';
 const Header=(props)=>{
      let history=useHistory();
-      if(props.tokenState.token==null){
-      localStorage.removeItem("jwtToken");
-      auth.authenticated=false;
-      history.push("/login");
-    }
-    console.log(props.tokenState.token,  localStorage.getItem("jwtToken"));
-  console.log(auth.authenticated);
-
+    
     return (
         <div className="header">
         <nav>
 
       <div className="header__rightSide">
         {
-                props.tokenState.token ?
+                auth.isAuthenticated() ?
             <div onClick={() => auth.logout(() => {
                 props.tokenState.token=null;
                 history.push("/login");

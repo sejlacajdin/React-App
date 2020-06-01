@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {useHistory} from 'react-router-dom';
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
@@ -16,17 +17,38 @@ const Login=(props)=> {
    const [values,setValues] =useState({
       email: "",
       password: "",
+      emailErrorMessage:'',
+      passwordErrorMessage:''
     });
+    let history=useHistory();
 
   const handleChange = (event) => {
     const { value, name } = event.target;
-    setValues({...values, [name]: value });
+    setValues({...values, [name]: value, [name+'ErrorMessage']:'' });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let isValid = true;
+    let emailMessage='';
+    let passwordMessage='';
+    if(values.email===""){
+      emailMessage="Input field is required.";
+    isValid=false;
+  }
+    
+    if(values.password==""){
+      passwordMessage="Input field is required.";
+    isValid=false;
+  }else   if(values.password.length<6){
+    passwordMessage="Password too short (minimum 6 characters).";
+    isValid=false;
+  }
+  setValues({...values,emailErrorMessage:emailMessage, passwordErrorMessage:passwordMessage });   
 
     let statusOfLogin = true;
+
+    if(isValid){
       await axios
         .post(
           "https://cors-anywhere.herokuapp.com/https://test.autoversand.com/api/token/",
@@ -36,10 +58,9 @@ const Login=(props)=> {
           }
         )
         .then((res) => {
-          //setState({ jwtToken: `jwt ${res.data.token}` });
           props.tokenReducer({ token: `jwt ${res.data.token}` });
           auth.login(`jwt ${res.data.token}`, () => {
-            props.history.push("/dashboard");
+            history.push("/dashboard");
           });
         })
         .catch((err) => {
@@ -54,8 +75,16 @@ const Login=(props)=> {
       if (!statusOfLogin) {
        setValues({...values, password: "" });
       }
-  };
+   };
+    }
 
+  useEffect(()=>{
+
+      if(auth.isAuthenticated())
+      history.push("/dashboard");
+      else
+      history.push("/login");
+  },[]);
     return (
       <div
         className= "registration"
@@ -78,6 +107,7 @@ const Login=(props)=> {
                       className="form-input"
                       spellCheck="false"
                     />
+                    <label>{values.emailErrorMessage}</label>
                   </div>
                   <div className="row">
                     <input
@@ -89,6 +119,7 @@ const Login=(props)=> {
                       className="form-input"
                       spellCheck="false"
                     />
+                    <label>{values.passwordErrorMessage}</label>
                   </div>
 
                   <button type="submit" onClick={handleSubmit}>
