@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { setToken } from "../../redux/actions";
 import auth from "../../auth";
-
+import {useBeforeFirstRender} from '../../hooks/useBeforeFirstRender';
 import Header from "../../components/Header/Header";
 
 import "./Login.css";
@@ -14,13 +14,19 @@ import "./Login.css";
 
 const Login=(props)=> {
 
+  let history=useHistory();
+  
+  useBeforeFirstRender(() => {
+    if(auth.isAuthenticated())
+    history.push("/dashboard");
+
+  })
    const [values,setValues] =useState({
       email: "",
       password: "",
       emailErrorMessage:'',
       passwordErrorMessage:''
     });
-    let history=useHistory();
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -78,13 +84,6 @@ const Login=(props)=> {
    };
     }
 
-  useEffect(()=>{
-
-      if(auth.isAuthenticated())
-      history.push("/dashboard");
-      else
-      history.push("/login");
-  },[]);
     return (
       <div
         className= "registration"
@@ -96,7 +95,7 @@ const Login=(props)=> {
             <Header/>
             <main className="loginRegisterContainer">
             <h2>Prijava</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(event)=>handleSubmit(event)}>
                   <div className="row">
                     <input
                       type="text"
@@ -122,7 +121,7 @@ const Login=(props)=> {
                     <label>{values.passwordErrorMessage}</label>
                   </div>
 
-                  <button type="submit" onClick={handleSubmit}>
+                  <button type="submit" onClick={(event)=>handleSubmit(event)}>
                     Login
                   </button>
                 </form>
